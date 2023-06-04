@@ -9,7 +9,7 @@ function App() {
 	const handleOnSubmit = async (e) => {
 		e.preventDefault();
 		let result = await fetch(
-		'http://localhost:5000/register', {
+		'/register', {
 			method: "post",
 			body: JSON.stringify({ name, email }),
 			headers: {
