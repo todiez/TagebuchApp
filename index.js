@@ -75,6 +75,40 @@ app.use(express.static(path.join(__dirname, 'frontend/build')))
 // })
 
 
+// For backend and express
+
+
+
+app.use(express.json());
+app.use(cors());
+app.get("/", (req, resp) => {
+  resp.send("App is Working");
+  // You can check backend is working or not by
+  // entering http://loacalhost:5000
+
+  // If you see App is working means
+  // backend working properly
+});
+
+
+app.post("/register", async (req, resp) => {
+  try {
+    const user = new User(req.body);
+    let result = await user.save();
+    result = result.toObject();
+    if (result) {
+      delete result.password;
+      resp.send(req.body);
+      console.log(result);
+    } else {
+      console.log("User already register");
+    }
+  } catch (e) {
+    resp.send("Something Went Wrong");
+  }
+});
+
+
 
 // Anything that doesn't match the above, send back the index.html file
 app.get('*', (req, res) => {
