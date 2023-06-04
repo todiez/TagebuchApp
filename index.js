@@ -1,20 +1,13 @@
-const express = require('express');
-const cowsay = require('cowsay');
-const cors = require('cors');
-const path = require('path');
+const express = require('express')
+const cowsay = require('cowsay')
+const cors = require('cors')
+const path = require('path')
 
 // Create the server
-const app = express();
-
-
+const app = express()
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'frontend/build')))
-// Anything that doesn't match the above, send back index.html
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
-})
 
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
@@ -27,7 +20,7 @@ app.get('/api/cow/:say', cors(), async (req, res, next) => {
   }
 })
 
-// Serve our base route that returns a Hello World cow
+// Serve our base route that returns a Hellow World cow
 app.get('/api/cow/', cors(), async (req, res, next) => {
   try {
     const moo = cowsay.say({ text: 'Hello World!' })
@@ -35,6 +28,11 @@ app.get('/api/cow/', cors(), async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
 })
 
 // Choose the port and start the server
