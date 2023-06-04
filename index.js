@@ -39,9 +39,6 @@ const User = mongoose.model("users", UserSchema);
 User.createIndexes();
 
 
-
-
-
 const express = require('express')
 const cowsay = require('cowsay')
 const cors = require('cors')
