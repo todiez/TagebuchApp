@@ -16,7 +16,7 @@ connectDB();
 // create user account using the collection.insertOne function
 function create(name, email, password) {
     return new Promise((resolve, reject) => {
-        const collection = db.collection('tagebuser');
+        const collection = conn.collection('tagebuser');
         const doc = { name, email, password, balance: 0 };
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
@@ -27,7 +27,7 @@ function create(name, email, password) {
 // find user account for Login
 function find(email) {
     return new Promise((resolve, reject) => {
-        const customers = db
+        const customers = conn
             .collection('tagebuser')
             .find({ email: email })
             .toArray(function (err, docs) {
@@ -39,7 +39,7 @@ function find(email) {
 // find user account
 function findOne(email) {
     return new Promise((resolve, reject) => {
-        const customers = db
+        const customers = conn
             .collection('tagebuser')
             .findOne({ email: email })
             .then((doc) => resolve(doc))
@@ -50,7 +50,7 @@ function findOne(email) {
 // update - deposit/withdraw amount
 function update(email, amount) {
     return new Promise((resolve, reject) => {
-        const customers = db
+        const customers = conn
             .collection('tagebuser')
             .findOneAndUpdate(
                 { email: email },
@@ -66,7 +66,7 @@ function update(email, amount) {
 // return all users by using the collection.find method
 function all() {
     return new Promise((resolve, reject) => {
-        const customers = db
+        const customers = conn
             .collection('tagebuser')
             .find({})
             .toArray(function(err, docs) {
