@@ -63,10 +63,10 @@ app.get('/account/create/:name/:email/:password', function (req, res) {
 
   // check if account exists
   dal.find(req.params.email).
-      then((users) => {
+      then((tagebusers) => {
 
           // if user exists, return error message
-          if(users.length > 0){
+          if(tagebusers.length > 0){
               console.log('User already in exists');
               res.send('User already in exists');    
           }
@@ -74,8 +74,8 @@ app.get('/account/create/:name/:email/:password', function (req, res) {
               // else create user
               dal.create(req.params.name,req.params.email,req.params.password).
                   then((user) => {
-                      console.log(user);
-                      res.send(user);            
+                      console.log(tagebuser);
+                      res.send(tagebuser);            
                   });            
                   
           }
