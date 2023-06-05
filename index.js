@@ -11,7 +11,7 @@ const connectDB = async () => {
     console.log(error);
   }
 };
-connectDB();
+//connectDB();
 
 // Schema for users of app
 const UserSchema = new mongoose.Schema({

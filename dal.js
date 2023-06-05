@@ -1,3 +1,18 @@
+require('dotenv').config();
+const MongoClient = require('mongodb').MongoClient;
+
+const url = process.env.MONGOURL;
+let db = null;
+
+// connect to mongo
+MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
+    console.log("Connected successfully to db server");
+
+    // connect to myproject database
+    db = client.db('testbankusers');
+});
+
+
 // create user account using the collection.insertOne function
 function create(name, email, password) {
     return new Promise((resolve, reject) => {
