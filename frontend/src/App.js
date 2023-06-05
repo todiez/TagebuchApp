@@ -7,7 +7,7 @@ function App() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 
-	  const [password, setPassword] = React.useState('');
+	  const [password, setPassword] = useState('');
 	  async function handle() {
 		// Email validation logic
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,8 +25,6 @@ function App() {
 		  alert("Email address is already in use");
 		  return;
 		}
-		
-		props.setShow(false);
 	  }
 	
 
