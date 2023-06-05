@@ -6,6 +6,31 @@ function App() {
 
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
+
+	  const [password, setPassword] = React.useState('');
+	  async function handle() {
+		// Email validation logic
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+		  alert("Invalid email address");
+		  return;
+		}
+	  
+		const url = `/account/create/${name}/${email}/${password}`;
+		try {
+		  const res = await fetch(url);
+		  const data = await res.json();
+		  console.log(data);
+		} catch (error) {
+		  alert("Email address is already in use");
+		  return;
+		}
+		
+		props.setShow(false);
+	  }
+	
+
+
 	const handleOnSubmit = async (e) => {
 		e.preventDefault();
 		let result = await fetch(
@@ -36,6 +61,31 @@ function App() {
 				onClick={handleOnSubmit}>submit</button>
 			</form>
 			<h2>{test}</h2>
+
+			Name<br/>
+    <input type="input" 
+      className="form-control" 
+      placeholder="Enter name" 
+      value={name} 
+      onChange={e => setName(e.currentTarget.value)} /><br/>
+
+    Email address<br/>
+    <input type="input" 
+      className="form-control" 
+      placeholder="Enter email" 
+      value={email} 
+      onChange={e => setEmail(e.currentTarget.value)}/><br/>
+
+    Password<br/>
+    <input type="password" 
+      className="form-control" 
+      placeholder="Enter password" 
+      value={password} 
+      onChange={e => setPassword(e.currentTarget.value)}/><br/>
+
+    <button type="submit" 
+      className="btn btn-dark" 
+      onClick={handle}>Create Account</button>
 
 		</>
 	);
