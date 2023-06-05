@@ -1,17 +1,17 @@
-require('dotenv').config();
-const MongoClient = require('mongodb').MongoClient;
+// To connect with mongoDB database
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const url = process.env.MONGOURL;
-let db = null;
-
-// connect to mongo
-MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
-    console.log("Connected successfully to db server");
-
-    // connect to myproject database
-    db = client.db('testbankusers');
-});
-
+const connectDB = async () => {
+  try {
+    mongoose.set("strictQuery", false);
+    const conn = await mongoose.connect(process.env.MONGOURL);
+    console.log(`Database connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+connectDB();
 
 // create user account using the collection.insertOne function
 function create(name, email, password) {
