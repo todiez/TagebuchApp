@@ -1,7 +1,7 @@
 // create user account using the collection.insertOne function
 function create(name, email, password) {
     return new Promise((resolve, reject) => {
-        const collection = db.collection('users');
+        const collection = db.collection('tagebuser');
         const doc = { name, email, password, balance: 0 };
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
@@ -13,7 +13,7 @@ function create(name, email, password) {
 function find(email) {
     return new Promise((resolve, reject) => {
         const customers = db
-            .collection('users')
+            .collection('tagebuser')
             .find({ email: email })
             .toArray(function (err, docs) {
                 err ? reject(err) : resolve(docs);
@@ -25,7 +25,7 @@ function find(email) {
 function findOne(email) {
     return new Promise((resolve, reject) => {
         const customers = db
-            .collection('users')
+            .collection('tagebuser')
             .findOne({ email: email })
             .then((doc) => resolve(doc))
             .catch((err) => reject(err));
@@ -36,7 +36,7 @@ function findOne(email) {
 function update(email, amount) {
     return new Promise((resolve, reject) => {
         const customers = db
-            .collection('users')
+            .collection('tagebuser')
             .findOneAndUpdate(
                 { email: email },
                 { $inc: { balance: amount } },
@@ -52,7 +52,7 @@ function update(email, amount) {
 function all() {
     return new Promise((resolve, reject) => {
         const customers = db
-            .collection('users')
+            .collection('tagebuser')
             .find({})
             .toArray(function(err, docs) {
                 err ? reject(err) : resolve(docs);
