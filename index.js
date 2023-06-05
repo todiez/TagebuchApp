@@ -1,5 +1,5 @@
 // To connect with mongoDB database
-
+const mongoose = require("mongoose");
 
 // Schema for users of app
 const UserSchema = new mongoose.Schema({
