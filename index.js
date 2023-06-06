@@ -1,26 +1,3 @@
-// // To connect with mongoDB database
-// const mongoose = require("mongoose");
-
-// // Schema for users of app
-// const UserSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true,
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true,
-//   },
-//   date: {
-//     type: Date,
-//     default: Date.now,
-//   },
-// });
-
-//const User = mongoose.model("users", UserSchema);
-//User.createIndexes();
-
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -36,25 +13,9 @@ app.use(express.static(path.join(__dirname, "frontend/build")));
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, resp) => {
-  resp.send("App is Working");
+  resp.send("Server/Backend is Working");
 });
 
-app.post("/register", async (req, resp) => {
-  try {
-    const user = new User(req.body);
-    let result = await user.save();
-    result = result.toObject();
-    if (result) {
-      delete result.password;
-      resp.send(req.body);
-      console.log(result);
-    } else {
-      console.log("User already register");
-    }
-  } catch (e) {
-    resp.send("Something Went Wrong");
-  }
-});
 
 // create user account
 app.get("/account/create/:name/:role/:email/:password", function (req, res) {
@@ -89,5 +50,5 @@ app.get("*", (req, res) => {
 // Choose the port and start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-  console.log(`Mixing it up on port: ${PORT}`);
+  console.log(`Running on port: ${PORT}`);
 });

@@ -11,7 +11,8 @@ const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model("User123", userSchema);
+//Collection name and chosing if dynamically injected
+const User = mongoose.model("TagebuchUser", userSchema);
 
 let db = null;
 
