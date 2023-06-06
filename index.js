@@ -57,7 +57,7 @@ app.post("/register", async (req, resp) => {
 });
 
 // create user account
-app.get("/account/create/:name/:email/:password", function (req, res) {
+app.get("/account/create/:name/:role/:email/:password", function (req, res) {
   // check if account exists
   dal.find(req.params.email).then((tagebusers) => {
     // if user exists, return error message
@@ -67,10 +67,15 @@ app.get("/account/create/:name/:email/:password", function (req, res) {
     } else {
       // else create user
       dal
-        .create(req.params.name, req.params.email, req.params.password)
+        .create(
+          req.params.name,
+          req.params.role,
+          req.params.email,
+          req.params.password
+        )
         .then((user) => {
-          console.log(tagebuser);
-          res.send(tagebuser);
+          console.log(user);
+          res.send(user);
         });
     }
   });
