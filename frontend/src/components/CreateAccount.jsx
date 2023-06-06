@@ -46,7 +46,7 @@ function CreateAccount() {
     return (
       <div>
        
-          <h1 className="text-center">Tagebuch Create Account</h1>
+          <h1 className="text-center" style={{margin: 30}}>Tagebuch Create Account</h1>
         
         <div className="container" style={{ maxWidth: 300, marginTop: 20 }}>
           Name
