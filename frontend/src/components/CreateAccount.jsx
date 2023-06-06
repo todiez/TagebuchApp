@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import templateImg from "../assets/Vorlage.png"
 
 function CreateAccount() {
   const [show, setShow] = useState(true);
@@ -101,6 +102,8 @@ function CreateAccount() {
     return (
       <>
         <h1 className="text-center">You have successfully created an account!</h1>
+        <h2 style={{margin: 50}}>And if we are lucky we will get something like this:</h2>
+        <img src={templateImg} alt="Template Image"/>
       </>
     );
   }
