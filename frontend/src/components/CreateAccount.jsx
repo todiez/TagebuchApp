@@ -47,7 +47,7 @@ function CreateAccount() {
     return (
       <div>
        
-          <h1 className="text-center" style={{margin: 30}}>Tagebuch Create Account</h1>
+          <h1 className="text-center">Tagebuch Create Account</h1>
         
         <div className="container" style={{ maxWidth: 300, marginTop: 20 }}>
           Name
@@ -102,7 +102,7 @@ function CreateAccount() {
     return (
       <>
         <h1 className="text-center">You have successfully created an account!</h1>
-        <h2 style={{margin: 50}}>And if we are lucky we will get something like this:</h2>
+        <h2>And if we are lucky we will get something like this:</h2>
         <img src={templateImg} alt="Template Image"/>
       </>
     );

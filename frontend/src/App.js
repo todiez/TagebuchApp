@@ -1,32 +1,38 @@
 //react import
 import React from "react";
 
+//rrd import
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 //components import
 import CreateAccount from "./components/CreateAccount";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Login from "./components/Login";
 
 //browser router function
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Main />,
-//     loader: mainLoader,
-//     errorElement: <Error />,
-//     children: [
-//       {
-//         index: true, //same as -->    path: "/",
-//         element: <Dashboard />,
-//         loader: dashboardLoader,
-//         action: dashboadAction,
-//         errorElement: <Error />
-//       },
-//......
-//...
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/createaccount",
+    element: <CreateAccount />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
 
 const App = () => {
   return (
-    <>
-      <CreateAccount />
-    </>
+    <div className="container">
+      <Navbar></Navbar>
+      <RouterProvider router={router} style={{margin: 350}}/>
+      <h2>test</h2>
+    </div>
   );
 };
 
