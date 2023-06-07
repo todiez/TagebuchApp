@@ -1,19 +1,22 @@
 import { useContext, useState } from "react";
 import templateImg from "../assets/Vorlage.png"
+import Card from "../context/context";
 
 function CreateAccount() {
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState("");
 
   return (
-    <div className="container">
-      {show ? (
-        <CreateForm setShow={setShow} />
-      ) : (
-        <CreateMsg setShow={setShow} />
-      )}
-    </div>
-  );
+    <Card
+      bgcolor="light"
+      txtcolor="black"
+      header="Create Account"
+      status={status}
+      body={show ? 
+        <CreateForm setShow={setShow}/> : 
+        <CreateMsg setShow={setShow}/>}
+    />
+  )
 
   function CreateForm(props) {
     //use states
