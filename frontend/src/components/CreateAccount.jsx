@@ -115,14 +115,29 @@ function CreateAccount() {
     );
   }
 
-  function CreateMsg() {
+  function CreateMsg(props) {
     return (
       <>
-        <h1 className="text-center">
-          You have successfully created an account!
-        </h1>
-        <h2>And if we are lucky we will get something like this:</h2>
-        <img src={templateImg} alt="Template Image" />
+        <h5>Success</h5>
+        <button
+          type="submit"
+          className="btn btn-dark"
+          onClick={() => props.setShow(true)}
+        >
+          Add another account
+        </button>
+        <br />
+        <br />
+        <button
+          type="button"
+          className="btn btn-dark"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/login";
+          }}
+        >
+          Go to Login
+        </button>
       </>
     );
   }

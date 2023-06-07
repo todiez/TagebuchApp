@@ -36,8 +36,11 @@ function create(name, role, email, password) {
 }
 
 // find user account for Login
-function find(email) {
-  return User.find({ email }).exec();
+async function find(email) {
+  console.log("INSIDE FIND in DAL: " + email );
+  const test = await User.find({ email }).exec();
+  console.log(test);
+  return test;
 }
 
 // find user account

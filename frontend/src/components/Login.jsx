@@ -45,13 +45,18 @@ function LoginForm(props) {
   const { setIsLoggedIn, setId, email, setEmail } = useContext(UserContext);
 
   function handle() {
-    console.log(email);
+    //e.preventDefault(); 
+
+    console.log("Login fired")
+    
     fetch(`/account/login/${email}/${password}`)
       .then((response) => response.text())
       .then((text) => {
         try {
+            console.log(text);
           const data = JSON.parse(text);
           setId(data._id);
+          console.log(data);
           props.setStatus("");
           props.setShow(false);
           setIsLoggedIn(true); // Set isLoggedIn to true
@@ -62,6 +67,7 @@ function LoginForm(props) {
         }
       });
   }
+
   return (
     <div>
       <div className="container" style={{ maxWidth: 300 }}>
@@ -93,7 +99,7 @@ function LoginForm(props) {
           }}
         >
           <button
-            type="submit"
+            type="button"
             className="btn btn-dark"
             onClick={handle}
             style={{ margin: 20 }}

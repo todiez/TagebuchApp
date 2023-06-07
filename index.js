@@ -16,15 +16,14 @@ app.get("/", (req, resp) => {
   resp.send("Server/Backend is Working");
 });
 
-
 // create user account
 app.get("/account/create/:name/:role/:email/:password", function (req, res) {
   // check if account exists
-  dal.find(req.params.email).then((tagebusers) => {
+  dal.find(req.params.email).then((tagebuser) => {
     // if user exists, return error message
-    if (tagebusers.length > 0) {
-      console.log("User already in exists");
-      res.send("User already in exists");
+    if (tagebuser.length > 0) {
+      console.log("User already exists");
+      res.send("User already exists");
     } else {
       // else create user
       dal
@@ -34,17 +33,38 @@ app.get("/account/create/:name/:role/:email/:password", function (req, res) {
           req.params.email,
           req.params.password
         )
-        .then((user) => {
-          console.log(user);
-          res.send(user);
+        .then((tagebuser) => {
+          console.log(tagebuser);
+          res.send(tagebuser);
         });
+    }
+  });
+});
+
+// login user
+app.get("/account/login/:email/:password", function (req, res) {
+  console.log(req.params.email);
+  console.log(req.params.password);
+
+  dal.find(req.params.email).then((tagebuser) => {
+    // if user exists, check password
+    if (tagebuser.length > 0) {
+      if (tagebuser[0].password === req.params.password) {
+        res.send(tagebuser[0]);
+      } else {
+        res.send("Login failed: wrong password");
+      }
+    } else {
+      res.send("Login failed: user not found!");
     }
   });
 });
 
 // "Catch all" anything that doesn't match the above, send back the index.html file
 app.get("*", (req, res) => {
+  console.log("catch all triggered");
   res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+  //res.redirect("/");
 });
 
 // Choose the port and start the server
