@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import templateImg from "../assets/Vorlage.png"
+import templateImg from "../assets/Vorlage.png";
 import Card from "../context/context";
 
 function CreateAccount() {
@@ -12,11 +12,15 @@ function CreateAccount() {
       txtcolor="black"
       header="Create Account"
       status={status}
-      body={show ? 
-        <CreateForm setShow={setShow}/> : 
-        <CreateMsg setShow={setShow}/>}
+      body={
+        show ? (
+          <CreateForm setShow={setShow} />
+        ) : (
+          <CreateMsg setShow={setShow} />
+        )
+      }
     />
-  )
+  );
 
   function CreateForm(props) {
     //use states
@@ -49,10 +53,7 @@ function CreateAccount() {
 
     return (
       <div>
-       
-          <h1 className="text-center">Tagebuch Create Account</h1>
-        
-        <div className="container" style={{ maxWidth: 300, marginTop: 20 }}>
+        <div className="container" style={{ maxWidth: 300 }}>
           Name
           <br />
           <input
@@ -93,9 +94,22 @@ function CreateAccount() {
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
           <br />
-          <button type="submit" className="btn btn-dark" onClick={handle}>
-            Create Account
-          </button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              type="submit"
+              className="btn btn-dark"
+              onClick={handle}
+              style={{ margin: 20 }}
+            >
+              Create Account
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -104,9 +118,11 @@ function CreateAccount() {
   function CreateMsg() {
     return (
       <>
-        <h1 className="text-center">You have successfully created an account!</h1>
+        <h1 className="text-center">
+          You have successfully created an account!
+        </h1>
         <h2>And if we are lucky we will get something like this:</h2>
-        <img src={templateImg} alt="Template Image"/>
+        <img src={templateImg} alt="Template Image" />
       </>
     );
   }
