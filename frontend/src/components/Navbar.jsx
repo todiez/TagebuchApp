@@ -5,43 +5,34 @@ export default function Navbar() {
   return (
     <UserContext.Consumer>
       {({ isLoggedIn }) => (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="/">
-            Tagebuch
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/createaccount/">
-                  Create Account
+        <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="/">
+          Tagebuch
+        </a>
+        <div class="container-fluid">
+          <ul class="navbar-nav flex-row">
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="/createaccount/">
+                Create Account
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="/login/">
+                Login
+              </a>
+            </li>
+            {isLoggedIn && (
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="/logout/">
+                  Logout
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login/">
-                  Login
-                </a>
-              </li>
-              {isLoggedIn && (
-                <li className="nav-item">
-                  <a className="nav-link" href="/logout/">
-                    Logout
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        </nav>
+            )}
+          </ul>
+        </div>
+      </nav>
+      
+      
       )}
     </UserContext.Consumer>
   );

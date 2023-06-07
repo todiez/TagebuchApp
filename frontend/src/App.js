@@ -28,11 +28,12 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <div className="container">
-      <Navbar></Navbar>
-      <RouterProvider router={router} style={{margin: 350}}/>
-      <h2>test</h2>
-    </div>
+    <>
+      <Navbar />
+      <div className="container" style={{marginTop: 30}}>
+        <RouterProvider router={router} />
+      </div>
+    </>
   );
 };
 

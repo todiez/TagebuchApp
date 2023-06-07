@@ -10,7 +10,7 @@ function Spa() {
   return (
     <div>
       <UserContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
-        <App/>
+        <App />
       </UserContext.Provider>
     </div>
   );
